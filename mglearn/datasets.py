@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 import os
 from scipy import signal
-from sklearn.datasets import load_boston
+# from sklearn.datasets import load_boston
+from sklearn.datasets import fetch_california_housing
 from sklearn.preprocessing import MinMaxScaler, PolynomialFeatures
 from sklearn.datasets import make_blobs
 
@@ -13,7 +14,7 @@ def make_forge():
     # a carefully hand-designed dataset lol
     X, y = make_blobs(centers=2, random_state=4, n_samples=30)
     y[np.array([7, 27])] = 0
-    mask = np.ones(len(X), dtype=np.bool)
+    mask = np.ones(len(X), dtype=np.bool_)
     mask[np.array([0, 1, 5, 26])] = 0
     X, y = X[mask], y[mask]
     return X, y
@@ -26,7 +27,7 @@ def make_wave(n_samples=100):
     y = (y_no_noise + rnd.normal(size=len(x))) / 2
     return x.reshape(-1, 1), y
 
-
+'''
 def load_extended_boston():
     boston = load_boston()
     X = boston.data
@@ -34,6 +35,15 @@ def load_extended_boston():
     X = MinMaxScaler().fit_transform(boston.data)
     X = PolynomialFeatures(degree=2, include_bias=False).fit_transform(X)
     return X, boston.target
+'''
+
+
+def load_extended_california():
+    california = fetch_california_housing()
+    X = california.data
+    X = MinMaxScaler().fit_transform(california.data)
+    X = PolynomialFeatures(degree=2, include_bias=False).fit_transform(X)
+    return X, california.target
 
 
 def load_citibike():

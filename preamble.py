@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import mglearn
+from mglearn import plot_helpers
 from cycler import cycler
 
 set_matplotlib_formats('pdf', 'png')
@@ -13,7 +14,7 @@ plt.rcParams['savefig.bbox'] = "tight"
 plt.rcParams['lines.linewidth'] = 2
 plt.rcParams['legend.numpoints'] = 1
 plt.rc('axes', prop_cycle=(
-    cycler('color', mglearn.plot_helpers.cm_cycle.colors) +
+    cycler('color', plot_helpers.cm_cycle.colors) +
     cycler('linestyle', ['-', '-', "--", (0, (3, 3)), (0, (1.5, 1.5))])))
 
 np.set_printoptions(precision=3, suppress=True)
