@@ -27,15 +27,14 @@ def make_wave(n_samples=100):
     y = (y_no_noise + rnd.normal(size=len(x))) / 2
     return x.reshape(-1, 1), y
 
-'''
-def load_extended_boston():
-    boston = load_boston()
-    X = boston.data
 
-    X = MinMaxScaler().fit_transform(boston.data)
+def load_extended_california():
+    california = fetch_california_housing()
+    X = california.data
+
+    X = MinMaxScaler().fit_transform(california.data)
     X = PolynomialFeatures(degree=2, include_bias=False).fit_transform(X)
-    return X, boston.target
-'''
+    return X, california.target
 
 
 def load_extended_california():
